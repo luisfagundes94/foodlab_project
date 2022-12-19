@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recipe">recipe</string>
+    <string name="favorite">favorite</string>
+    <string name="timer">timer</string>
+    <string name="servings">servings</string>
+    <string name="circle_divider">circle divider</string>
+    <string name="recipe_desc">recipe</string>
+    <string name="recipe_servings">%s servings</string>
+    <string name="ready_in_minutes">%s min</string>
+</resources>

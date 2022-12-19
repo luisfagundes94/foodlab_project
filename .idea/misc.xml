@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidProjects/foodlab_project/common/theme/src/main/res/drawable-night/recipe_dark.xml" value="0.384" />
+        <entry key="..\:/AndroidProjects/foodlab_project/common/theme/src/main/res/drawable-v23/background_logo.xml" value="0.384" />
+        <entry key="..\:/AndroidProjects/foodlab_project/common/theme/src/main/res/drawable/background_logo.xml" value="0.384" />
+        <entry key="..\:/AndroidProjects/foodlab_project/common/theme/src/main/res/drawable/ic_baseline_food_bank_24.xml" value="0.1655" />
+        <entry key="..\:/AndroidProjects/foodlab_project/common/theme/src/main/res/drawable/ic_dark_logo.xml" value="0.384" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
