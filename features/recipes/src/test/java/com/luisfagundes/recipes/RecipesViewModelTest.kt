@@ -21,12 +21,11 @@ internal class RecipesViewModelTest {
     @get:Rule
     val coroutineRule = TestCoroutineRule()
 
-    private val recipeFactory = RecipeFactory()
     private val recipePagingData = PagingData.from(
         listOf(
-            recipeFactory.create(),
-            recipeFactory.create(),
-            recipeFactory.create()
+            RecipeFactory.create(),
+            RecipeFactory.create(),
+            RecipeFactory.create()
         )
     )
 

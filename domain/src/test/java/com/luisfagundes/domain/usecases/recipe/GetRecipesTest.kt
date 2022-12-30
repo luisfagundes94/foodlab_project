@@ -24,11 +24,10 @@ internal class GetRecipesTest {
     val mainCoroutineRule = TestCoroutineRule()
 
     private val repository: RecipeRepository = mockk()
-    private val recipeFactory = RecipeFactory()
     private val pagingSourceFactory = PagingSourceFactory().create(listOf(
-        recipeFactory.create(),
-        recipeFactory.create(),
-        recipeFactory.create()
+        RecipeFactory.create(),
+        RecipeFactory.create(),
+        RecipeFactory.create()
     ))
     private lateinit var getRecipes: GetRecipes
 

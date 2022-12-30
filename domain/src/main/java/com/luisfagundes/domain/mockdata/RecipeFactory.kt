@@ -2,7 +2,7 @@ package com.luisfagundes.domain.mockdata
 
 import com.luisfagundes.domain.models.Recipe
 
-class RecipeFactory {
+object RecipeFactory {
     fun create() = Recipe(
         id = RANDOM_NUMBER,
         title = TITLE,
@@ -21,10 +21,7 @@ class RecipeFactory {
         summary = "",
         sourceName = ""
     )
-
-    private companion object {
-        const val RANDOM_NUMBER = 1
-        const val TITLE = "TITLE"
-        const val IMAGE = "IMAGE"
-    }
+        private const val RANDOM_NUMBER = 1
+        private const val TITLE = "TITLE"
+        private const val IMAGE = "IMAGE"
 }

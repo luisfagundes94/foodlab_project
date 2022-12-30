@@ -49,6 +49,7 @@ dependencies {
 
     implementation(project(":domain"))
     implementation(project(":extensions"))
+    implementation(project(":common:testing"))
 
     implementation(Dependencies.DI.hiltAndroid)
     kapt(Dependencies.DI.hiltAndroidCompiler)

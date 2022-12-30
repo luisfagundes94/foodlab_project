@@ -9,7 +9,7 @@ import com.luisfagundes.domain.models.RecipeListBody
 class RemoteRecipeDataSource(
     private val apiService: ApiService
 ) : RecipeDataSource {
-    override suspend fun fetchRecipes(queries: HashMap<String, String>): RecipeListBody {
+    override suspend fun fetchRecipes(queries: Map<String, String>): RecipeListBody {
         val data = apiService.fetchRecipes(queries)
         val recipes = data.results.map { it.toDomainModel() }
 
