@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -40,6 +42,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
+
+    packagingOptions {
+        resources.pickFirsts.add("META-INF/LICENSE.md")
+        resources.pickFirsts.add("META-INF/LICENSE-notice.md")
+    }
+
     namespace = "com.luisfagundes.recipes"
 }
 

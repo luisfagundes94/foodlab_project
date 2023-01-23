@@ -8,4 +8,5 @@
     <string name="recipe_desc">recipe</string>
     <string name="recipe_servings">%s servings</string>
     <string name="ready_in_minutes">%s min</string>
+    <string name="about">About</string>
 </resources>

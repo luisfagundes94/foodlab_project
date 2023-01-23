@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 
-abstract class BaseUseCase<in P, R> {
+abstract class FlowUseCase<in P, R> {
 
     protected abstract suspend fun execute(params: P): DataState<R>
 

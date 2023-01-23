@@ -6,6 +6,7 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+@Suppress("UnstableApiUsage")
 android {
     compileSdk = 33
 
@@ -42,13 +43,13 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1,gradle-plugins}"
-        }
-    }
-    namespace = "com.luisfagundes.foodlab"
 
+    packagingOptions {
+        resources.pickFirsts.add("META-INF/LICENSE.md")
+        resources.pickFirsts.add("META-INF/LICENSE-notice.md")
+    }
+
+    namespace = "com.luisfagundes.foodlab"
 }
 
 android.applicationVariants.all {

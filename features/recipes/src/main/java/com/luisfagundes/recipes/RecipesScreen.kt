@@ -219,7 +219,7 @@ fun RecipeItem(
 )
 @Composable
 fun RecipesScreenPreview() {
-    val fakeRecipe = RecipeFactory().create()
+    val fakeRecipe = RecipeFactory.create()
     FoodlabTheme {
         Surface {
             Column {
