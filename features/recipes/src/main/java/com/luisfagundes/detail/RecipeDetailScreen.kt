@@ -2,26 +2,31 @@ package com.luisfagundes.detail
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
+import com.luisfagundes.component.widget.ErrorView
+import com.luisfagundes.component.widget.HtmlText
+import com.luisfagundes.component.widget.RecipeTags
+import com.luisfagundes.domain.mockdata.RecipeFactory
+import com.luisfagundes.domain.models.Recipe
+import com.luisfagundes.recipes.R
+import com.luisfagundes.theme.FoodlabTheme
 import com.luisfagundes.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.luisfagundes.recipes.R
-import com.luisfagundes.theme.FoodlabTheme
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(start = true)
@@ -32,40 +37,49 @@ fun RecipeDetailScreen(
     viewModel: RecipeDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    CheckUiState(uiState)
 
-    RecipeInformation()
+    LaunchedEffect(key1 = viewModel, block = {
+        viewModel.fetchRecipeDetails(id)
+    })
 }
 
 @Composable
-private fun RecipeInformation() {
-    Column(
-        modifier = Modifier.padding(MaterialTheme.spacing.default)
-    ) {
-        Image(url = "")
-        Title(text = stringResource(R.string.about))
+private fun CheckUiState(uiState: RecipeDetailUiState) {
+    when {
+        uiState.recipe != null -> RecipeInformation(recipe = uiState.recipe)
+        uiState.isLoading -> Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            CircularProgressIndicator()
+        }
+        uiState.hasError -> ErrorView()
     }
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
-private fun Image(url: String) {
-    Card(
-        onClick = {},
-        modifier = Modifier.fillMaxWidth()
+private fun RecipeInformation(
+    recipe: Recipe
+) {
+    Column(
+        modifier = Modifier
+            .padding(MaterialTheme.spacing.default)
+            .verticalScroll(rememberScrollState())
     ) {
-        Column(
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            AsyncImage(
-                modifier = Modifier.height(200.dp),
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(url)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = stringResource(R.string.recipe_desc),
-                contentScale = ContentScale.Crop
-            )
+        RecipeImage(url = recipe.image)
+        VerticalDivider(MaterialTheme.spacing.verySmall)
+        Title(text = recipe.title)
+        RecipeTags(recipe)
+        NutritionFacts(recipe = recipe)
+        Title(text = stringResource(id = R.string.about))
+        HtmlText(text = recipe.summary)
+        VerticalDivider(MaterialTheme.spacing.verySmall)
+        recipe.ingredients?.let { ingredients ->
+            Title(text = stringResource(R.string.ingredients))
+            RecipeIngredients(ingredients)
         }
+        Title(text = stringResource(R.string.steps))
     }
 }
 
@@ -75,9 +89,15 @@ fun Title(
 ) {
     Text(
         text = text,
-        style = MaterialTheme.typography.titleMedium,
+        style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.SemiBold
     )
+    VerticalDivider(MaterialTheme.spacing.verySmall)
+}
+
+@Composable
+fun VerticalDivider(spacing: Dp) {
+    Spacer(modifier = Modifier.padding(vertical = spacing))
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_YES)
@@ -85,8 +105,8 @@ fun Title(
 fun RecipeDetailPreview() {
     FoodlabTheme {
         Surface {
-            RecipeInformation()
+            val recipe = RecipeFactory.create()
+            RecipeInformation(recipe)
         }
     }
-
 }

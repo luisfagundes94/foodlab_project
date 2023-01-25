@@ -6,7 +6,13 @@
     <string name="servings">servings</string>
     <string name="circle_divider">circle divider</string>
     <string name="recipe_desc">recipe</string>
+    <string name="ingredient_desc">ingredient</string>
     <string name="recipe_servings">%s servings</string>
     <string name="ready_in_minutes">%s min</string>
     <string name="about">About</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="fat">fat</string>
+    <string name="protein">protein</string>
+    <string name="carbs">carbs</string>
+    <string name="steps">Steps</string>
 </resources>

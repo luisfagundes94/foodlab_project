@@ -5,5 +5,6 @@ data class Ingredient(
     val name: String,
     val amount: Float,
     val image: String?,
-    val measures: Measures
+    val measures: Measures,
+    val originalMeasure: String
 )

@@ -39,6 +39,7 @@ android {
 dependencies {
 
     implementation(project(":common:theme"))
+    implementation(project(":domain"))
     implementation(project(":framework"))
 
     implementation(Dependencies.UI.composeUi)
@@ -47,4 +48,5 @@ dependencies {
     implementation(Dependencies.UI.composeTooling)
     implementation(Dependencies.UI.poolingContainer)
     implementation(Dependencies.UI.lottieCompose)
+    implementation("androidx.core:core:1.9.0")
 }

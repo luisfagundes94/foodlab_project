@@ -63,6 +63,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
     implementation("androidx.compose.runtime:runtime:1.3.3")
     implementation("androidx.compose.foundation:foundation:1.3.1")
+    implementation("androidx.palette:palette-ktx:1.0.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")

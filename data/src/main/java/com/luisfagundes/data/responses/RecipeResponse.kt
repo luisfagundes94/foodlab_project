@@ -16,5 +16,23 @@ data class RecipeResponse(
     val vegetarian: Boolean,
     val vegan: Boolean,
     val dishTypes: List<String>?,
-    val summary: String
+    val summary: String,
+    val glutenFree: Boolean? = null,
+    val dairyFree: Boolean? = null,
+    val veryHealthy: Boolean? = null,
+    val veryPopular: Boolean? = null,
+    val sustainable: Boolean? = null,
+    val nutrition: NutritionResponse?
+
+)
+
+data class NutritionResponse(
+    val nutrients: List<NutrientResponse>,
+    val caloricBreakdown: CaloricBreakDownResponse
+)
+
+data class CaloricBreakDownResponse(
+    val percentProtein: Float,
+    val percentFat: Float,
+    val percentCarbs: Float
 )

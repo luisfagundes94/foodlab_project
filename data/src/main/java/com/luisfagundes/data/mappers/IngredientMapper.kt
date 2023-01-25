@@ -6,6 +6,7 @@ import com.luisfagundes.domain.models.Measures
 import com.luisfagundes.data.responses.IngredientResponse
 import com.luisfagundes.data.responses.MeasureResponse
 import com.luisfagundes.data.responses.MeasuresResponse
+import com.luisfagundes.extensions.empty
 
 private const val BASE_IMAGE_URL = "https://spoonacular.com/cdn/ingredients_100x100/"
 
@@ -20,7 +21,8 @@ object IngredientMapper {
             amount = this.amount,
             name = this.name,
             image = BASE_IMAGE_URL + this.image,
-            measures = this.measures.mapToDomain()
+            measures = this.measures.mapToDomain(),
+            originalMeasure = this.original ?: String.empty()
         )
     }
 
