@@ -41,10 +41,9 @@ android {
 
 dependencies {
     // Projects
-    implementation(project(":common:theme"))
-    implementation(project(":extensions"))
-    implementation(project(":framework"))
-    implementation(project(":domain"))
+    implementation(projects.common.theme)
+    implementation(projects.framework)
+    implementation(projects.domain)
 
     // Dependency Injection
     implementation(libs.hilt.library)

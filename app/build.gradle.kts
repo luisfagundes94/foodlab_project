@@ -76,16 +76,15 @@ android.applicationVariants.all {
 
 dependencies {
 
-    implementation(project(":features:home"))
-    implementation(project(":features:splash"))
-    implementation(project(":features:welcome"))
-    implementation(project(":features:recipes"))
-    implementation(project(":data"))
-    implementation(project(":domain"))
-    implementation(project(":framework"))
-    implementation(project(":extensions"))
-    implementation(project(":common:theme"))
-    implementation(project(":common:provider"))
+    implementation(projects.features.home)
+    implementation(projects.features.splash)
+    implementation(projects.features.welcome)
+    implementation(projects.features.recipes)
+    implementation(projects.data)
+    implementation(projects.domain)
+    implementation(projects.framework)
+    implementation(projects.common.theme)
+    implementation(projects.common.provider)
 
     // Core
     implementation(libs.androidx.core.ktx)

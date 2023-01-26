@@ -52,10 +52,9 @@ android.libraryVariants.all {
 
 dependencies {
     // Projects
-    implementation(project(":common:provider"))
-    implementation(project(":common:theme"))
-    implementation(project(":extensions"))
-    implementation(project(":features:recipes"))
+    implementation(projects.common.provider)
+    implementation(projects.common.theme)
+    implementation(projects.features.recipes)
 
     // Navigation
     implementation(libs.navigation.compose)

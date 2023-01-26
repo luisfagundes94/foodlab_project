@@ -14,9 +14,9 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = ("foodlab")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = ("foodlab")
 
 include(
     ":app",
@@ -24,7 +24,6 @@ include(
     ":features:welcome",
     ":domain",
     ":common:theme",
-    ":extensions",
     ":framework",
     ":features:home",
     ":common:provider",

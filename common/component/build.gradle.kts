@@ -39,9 +39,9 @@ android {
 dependencies {
 
     // Projects
-    implementation(project(":common:theme"))
-    implementation(project(":domain"))
-    implementation(project(":framework"))
+    implementation(projects.common.theme)
+    implementation(projects.domain)
+    implementation(projects.framework)
 
     // Compose
     implementation(libs.compose.ui.ui)

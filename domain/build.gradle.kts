@@ -37,8 +37,8 @@ android {
 
 dependencies {
     // Projects
-    implementation(project(":framework"))
-    implementation(project(":common:testing"))
+    implementation(projects.framework)
+    implementation(projects.common.testing)
 
     // Dependency Injection
     implementation(libs.hilt.library)

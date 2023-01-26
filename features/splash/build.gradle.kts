@@ -44,10 +44,9 @@ android {
 dependencies {
 
     // Libraries
-    implementation(project(":common:theme"))
-    implementation(project(":extensions"))
-    implementation(project(":domain"))
-    implementation(project(":framework"))
+    implementation(projects.common.theme)
+    implementation(projects.domain)
+    implementation(projects.framework)
 
     // Core
     implementation(libs.androidx.activity.compose)

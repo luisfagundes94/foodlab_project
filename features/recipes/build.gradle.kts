@@ -60,13 +60,12 @@ android.libraryVariants.all {
 }
 
 dependencies {
-    implementation(project(":common:provider"))
-    implementation(project(":common:theme"))
-    implementation(project(":framework"))
-    implementation(project(":domain"))
-    implementation(project(":extensions"))
-    implementation(project(":common:component"))
-    implementation(project(":common:testing"))
+    implementation(projects.common.provider)
+    implementation(projects.common.theme)
+    implementation(projects.framework)
+    implementation(projects.domain)
+    implementation(projects.common.component)
+    implementation(projects.common.testing)
 
     // UI
     implementation(libs.compose.ui.ui)
