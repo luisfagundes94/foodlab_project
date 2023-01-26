@@ -6,7 +6,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import com.luisfagundes.foodlab_project.ui.theme.Typography
+import com.luisfagundes.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = md_theme_dark_primary,

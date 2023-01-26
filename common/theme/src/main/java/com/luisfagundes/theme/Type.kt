@@ -1,4 +1,4 @@
-package com.luisfagundes.foodlab_project.ui.theme
+package com.luisfagundes.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
