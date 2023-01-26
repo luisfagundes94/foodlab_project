@@ -1,13 +1,9 @@
 plugins {
-    id("org.jetbrains.kotlin.android")
-}
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -15,8 +11,8 @@ android {
 
     defaultConfig {
         applicationId = "com.luisfagundes.foodlab"
-        minSdk = libs.versions.target.sdk.version.get().toInt()
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
         versionCode = 1
         versionName = "0.1.0"
 
@@ -25,26 +21,41 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+        getByName("debug") {
+            versionNameSuffix = "-debug"
+        }
     }
+
+    sourceSets {
+        getByName("debug") {
+            java.srcDir("src/debugRelease/java")
+        }
+        getByName("release") {
+            java.srcDir("src/debugRelease/java")
+        }
+    }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = libs.versions.compose.compilerextension.get()
     }
 
     packagingOptions {
@@ -85,6 +96,7 @@ dependencies {
     implementation(libs.compose.ui.tooling)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.compose.material.material)
 
     // Lifecycle
     implementation(libs.lifecycle.runtime.ktx)
@@ -92,7 +104,6 @@ dependencies {
     // Dependency Injection
     implementation(libs.hilt.library)
     implementation(libs.hilt.compose)
-    implementation("androidx.core:core-ktx:+")
     kapt(libs.hilt.compiler)
 
     // Navigation

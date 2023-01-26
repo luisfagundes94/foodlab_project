@@ -1,10 +1,10 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
 }
 
 ksp {
@@ -13,11 +13,11 @@ ksp {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -33,14 +33,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.compilerextension.get()
     }
 
     packagingOptions {
@@ -68,28 +68,30 @@ dependencies {
     implementation(project(":common:component"))
     implementation(project(":common:testing"))
 
-//    implementation(Dependencies.UI.composeUi)
-//    implementation(Dependencies.UI.composeMaterial3)
-//    implementation(Dependencies.UI.composeMaterial)
-//    implementation(Dependencies.UI.composeTooling)
-//    implementation(Dependencies.UI.poolingContainer)
-//    implementation(Dependencies.UI.materialIconCore)
-//    implementation(Dependencies.UI.materialIconExtended)
-//    implementation(Dependencies.UI.composePaging)
-//    implementation(Dependencies.UI.coil)
-//
-//    implementation(Dependencies.Accompanist.swipeToRefresh)
-//
-//    implementation(Dependencies.Lifecycle.lifecycleRunTimeCompose)
-//
-//    implementation(Dependencies.DI.hiltAndroid)
-//    implementation(Dependencies.DI.hiltNavigationCompose)
-//    implementation("androidx.core:core-ktx:+")
-//    testImplementation(project(mapOf("path" to ":domain")))
-//    kapt(Dependencies.DI.hiltAndroidCompiler)
-//
-//    implementation(Dependencies.Navigation.navigation)
-//    implementation(Dependencies.Navigation.destinationCore)
-//    ksp(Dependencies.Navigation.destinationKsp)
-//    implementation(Dependencies.Navigation.destinationAnimation)
+    // UI
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material.iconsext)
+    implementation(libs.accompanist.swipetorefresh)
+
+    // Paging
+    implementation(libs.androidx.paging.compose)
+
+    // Coil
+    implementation(libs.coil.compose)
+
+    // Lifecycle
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    // Dependency Injection
+    implementation(libs.hilt.library)
+    implementation(libs.hilt.compose)
+    kapt(libs.hilt.compiler)
+
+    // Navigation
+    implementation(libs.navigation.compose)
+    ksp(libs.destination.ksp)
+    implementation(libs.destination.animation)
+    implementation(libs.destination.core)
 }

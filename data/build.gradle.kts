@@ -2,10 +2,10 @@ import org.jetbrains.kotlin.konan.properties.Properties
 import java.io.FileInputStream
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 val apiKeyPropertiesFile = rootProject.file("apikey.properties")
@@ -14,11 +14,11 @@ apiKeyProperties.load(FileInputStream(apiKeyPropertiesFile))
 
 android {
     namespace = "com.luisfagundes.data"
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -37,33 +37,38 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
 dependencies {
 
-//    implementation(project(":domain"))
-//    implementation(project(":extensions"))
-//    implementation(project(":common:testing"))
-//
-//    implementation(Dependencies.DI.hiltAndroid)
-//    implementation("androidx.core:core-ktx:+")
-//    kapt(Dependencies.DI.hiltAndroidCompiler)
-//
-//    implementation(Dependencies.Storage.dataStore)
-//    implementation(Dependencies.Storage.dataStorePref)
-//
-//    implementation(Dependencies.Network.retrofit)
-//    implementation(Dependencies.Network.retrofitGson)
-//    implementation(Dependencies.Network.okHttp3)
-//    implementation(Dependencies.Network.loggingInterceptor)
-//
-//    implementation(Dependencies.UI.composePaging)
+    // Projects
+    implementation(project(":domain"))
+    implementation(project(":extensions"))
+    implementation(project(":common:testing"))
+
+    // Dependency Injection
+    implementation(libs.hilt.library)
+    implementation(libs.hilt.compose)
+    kapt(libs.hilt.compiler)
+
+    // Storage
+    implementation(libs.datastore)
+
+    // Network
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.mockwebserver)
+    implementation(libs.okhttp.interceptor)
+
+    // PagingSource
+    implementation(libs.androidx.paging.compose)
 }
 
 fun getApiKey() = apiKeyProperties["API_KEY"]

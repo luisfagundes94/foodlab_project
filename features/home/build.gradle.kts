@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 ksp {
@@ -10,11 +10,11 @@ ksp {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -30,14 +30,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.compilerextension.get()
     }
     namespace = "com.luisfagundes.home"
 }
@@ -51,23 +51,23 @@ android.libraryVariants.all {
 }
 
 dependencies {
+    // Projects
+    implementation(project(":common:provider"))
+    implementation(project(":common:theme"))
+    implementation(project(":extensions"))
+    implementation(project(":features:recipes"))
 
-//    implementation(project(":common:provider"))
-//    implementation(project(":common:theme"))
-//    implementation(project(":extensions"))
-//    implementation(project(":features:recipes"))
-//
-//    implementation(Dependencies.Navigation.navigation)
-//    implementation("androidx.core:core-ktx:+")
-//    ksp(Dependencies.Navigation.destinationKsp)
-//    implementation(Dependencies.Navigation.destinationAnimation)
-//    implementation(Dependencies.Navigation.destinationCore)
-//
-//    implementation(Dependencies.UI.composeUi)
-//    implementation(Dependencies.UI.composeMaterial3)
-//    implementation(Dependencies.UI.composeMaterial)
-//    implementation(Dependencies.UI.composeTooling)
-//    implementation(Dependencies.UI.poolingContainer)
-//
-//    implementation(Dependencies.Accompanist.insets)
+    // Navigation
+    implementation(libs.navigation.compose)
+    ksp(libs.destination.ksp)
+    implementation(libs.destination.animation)
+    implementation(libs.destination.core)
+
+    // Compose
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.tooling)
+
+    // Accompanist
+    implementation(libs.accompanist.insets)
 }

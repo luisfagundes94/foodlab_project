@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.luisfagundes.component"
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -25,19 +25,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0-alpha02"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compilerextension.get()
     }
 }
 
 dependencies {
 
+    // Projects
     implementation(project(":common:theme"))
     implementation(project(":domain"))
     implementation(project(":framework"))
@@ -46,8 +47,8 @@ dependencies {
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.material3)
     implementation(libs.compose.ui.tooling)
-    //implementation(Dependencies.UI.poolingContainer)
-    //implementation(Dependencies.UI.lottieCompose)
-    implementation("androidx.core:core:1.9.0")
-    implementation("androidx.core:core-ktx:+")
+    implementation(libs.lottie)
+
+    // Core
+    implementation(libs.androidx.core.ktx)
 }

@@ -1,19 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("dagger.hilt.android.plugin")
-}
-apply {
-    plugin("kotlin-android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -29,25 +26,28 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     namespace = "com.luisfagundes.domain"
 }
 
 dependencies {
-//    implementation(project(":framework"))
-//    implementation(project(":common:testing"))
-//
-//    implementation(Dependencies.DI.hiltAndroid)
-//    implementation("androidx.core:core-ktx:+")
-//    kapt(Dependencies.DI.hiltAndroidCompiler)
-//
-//    implementation(Dependencies.Storage.dataStore)
-//    implementation(Dependencies.Storage.dataStorePref)
-//
-//    implementation(Dependencies.UI.composePaging)
+    // Projects
+    implementation(project(":framework"))
+    implementation(project(":common:testing"))
+
+    // Dependency Injection
+    implementation(libs.hilt.library)
+    implementation(libs.hilt.compose)
+    kapt(libs.hilt.compiler)
+
+    // Data
+    implementation(libs.datastore)
+
+    // Paging
+    implementation(libs.androidx.paging.compose)
 }

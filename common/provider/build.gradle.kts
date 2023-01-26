@@ -1,17 +1,17 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
-    id("org.jetbrains.kotlin.kapt")
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -27,27 +27,29 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     namespace = "com.luisfagundes.provider"
 }
 
 dependencies {
 
-//    implementation(Dependencies.Navigation.navigation)
-//    implementation(Dependencies.Navigation.destinationCore)
-//    implementation(Dependencies.Navigation.destinationAnimation)
-//    implementation("androidx.core:core-ktx:+")
-//    ksp(Dependencies.Navigation.destinationKsp)
-//
-//    implementation(Dependencies.UI.composeUi)
-//    implementation(Dependencies.UI.composeMaterial3)
-//
-//    implementation(Dependencies.DI.hiltAndroid)
-//    kapt(Dependencies.DI.hiltAndroidCompiler)
-//    implementation(Dependencies.DI.hiltNavigationCompose)
+    // Navigation
+    implementation(libs.navigation.compose)
+    implementation(libs.destination.animation)
+    implementation(libs.destination.core)
+    ksp(libs.destination.ksp)
+
+    // UI
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.material3)
+
+    // Dependency Injection
+    implementation(libs.hilt.library)
+    implementation(libs.hilt.compose)
+    kapt(libs.hilt.compiler)
 }

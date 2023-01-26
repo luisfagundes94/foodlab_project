@@ -1,19 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("dagger.hilt.android.plugin")
-}
-apply {
-    plugin("kotlin-android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -29,41 +26,39 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = Versions.java
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.compilerextension.get()
     }
     namespace = "com.luisfagundes.splashscreen"
 }
 
 dependencies {
 
-//    // Libraries
-//    implementation(project(":common:theme"))
-//    implementation(project(":extensions"))
-//    implementation(project(":domain"))
-//    implementation(project(":framework"))
-//
-//    // Core
-//    implementation(Dependencies.Core.composeActivity)
-//
-//    // UI
-//    implementation(Dependencies.UI.splashScreen)
-//    implementation(Dependencies.UI.composeMaterial3)
-//    implementation(Dependencies.UI.composeUi)
-//
-//    // DI
-//    implementation(Dependencies.DI.hiltAndroid)
-//    implementation("androidx.core:core-ktx:+")
-//    kapt(Dependencies.DI.hiltAndroidCompiler)
-//    implementation(Dependencies.DI.hiltNavigationCompose)
-//    implementation("androidx.core:core-ktx:1.9.0")
+    // Libraries
+    implementation(project(":common:theme"))
+    implementation(project(":extensions"))
+    implementation(project(":domain"))
+    implementation(project(":framework"))
+
+    // Core
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.splashscreen)
+
+    // UI
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.ui)
+
+    // Dependency Injection
+    implementation(libs.hilt.library)
+    implementation(libs.hilt.compose)
+    kapt(libs.hilt.compiler)
 }

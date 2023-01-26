@@ -15,7 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisfagundes.component.widget.ErrorView
 import com.luisfagundes.component.widget.HtmlText
@@ -28,7 +27,6 @@ import com.luisfagundes.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(start = true)
 @Composable
 fun RecipeDetailScreen(

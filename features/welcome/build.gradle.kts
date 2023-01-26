@@ -1,19 +1,17 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("dagger.hilt.android.plugin")
-}
-apply {
-    plugin("kotlin-android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -29,42 +27,44 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.compilerextension.get()
     }
     namespace = "com.luisfagundes.welcome"
 }
 
 dependencies {
-//    implementation(project(":common:theme"))
-//    implementation(project(":extensions"))
-//    implementation(project(":framework"))
-//    implementation(project(":domain"))
-//
-//    implementation(Dependencies.DI.hiltAndroid)
-//    implementation("androidx.core:core-ktx:+")
-//    kapt(Dependencies.DI.hiltAndroidCompiler)
-//    implementation(Dependencies.DI.hiltNavigationCompose)
-//
-//    implementation(Dependencies.Navigation.navigation)
-//    implementation(Dependencies.Navigation.destinationCore)
-//    //ksp(Dependencies.Navigation.DestinationKsp)
-//    implementation(Dependencies.Navigation.destinationAnimation)
-//
-//    implementation(Dependencies.Core.composeActivity)
-//
-//    implementation(Dependencies.Accompanist.pager)
-//    implementation(Dependencies.Accompanist.indicators)
-//    implementation(Dependencies.Accompanist.systemUiController)
-//
-//    implementation(Dependencies.UI.composeMaterial3)
-//    implementation(Dependencies.UI.composeUi)
-//    implementation(Dependencies.UI.composeTooling)
-//    implementation(Dependencies.UI.poolingContainer)
+    // Projects
+    implementation(project(":common:theme"))
+    implementation(project(":extensions"))
+    implementation(project(":framework"))
+    implementation(project(":domain"))
+
+    // Dependency Injection
+    implementation(libs.hilt.library)
+    implementation(libs.hilt.compose)
+    kapt(libs.hilt.compiler)
+
+    // Navigation
+    implementation(libs.navigation.compose)
+    ksp(libs.destination.ksp)
+    implementation(libs.destination.animation)
+    implementation(libs.destination.core)
+
+    // Compose
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.tooling)
+
+    // Accompanist
+    implementation(libs.accompanist.insets)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicator)
+    implementation(libs.accompanist.systemuicontroller)
 }
