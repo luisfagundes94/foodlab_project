@@ -75,7 +75,7 @@ android.applicationVariants.all {
 }
 
 dependencies {
-
+    // Projects
     implementation(projects.features.home)
     implementation(projects.features.splash)
     implementation(projects.features.welcome)
