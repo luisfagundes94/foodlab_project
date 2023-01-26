@@ -45,4 +45,5 @@ dependencies {
     api("io.mockk:mockk:1.13.3")
     api("app.cash.turbine:turbine:0.7.0")
     api("com.google.truth:truth:1.1.3")
+    implementation("androidx.core:core-ktx:+")
 }

@@ -52,21 +52,22 @@ android.libraryVariants.all {
 
 dependencies {
 
-    implementation(project(":common:provider"))
-    implementation(project(":common:theme"))
-    implementation(project(":extensions"))
-    implementation(project(":features:recipes"))
-
-    implementation(Dependencies.Navigation.navigation)
-    ksp(Dependencies.Navigation.destinationKsp)
-    implementation(Dependencies.Navigation.destinationAnimation)
-    implementation(Dependencies.Navigation.destinationCore)
-
-    implementation(Dependencies.UI.composeUi)
-    implementation(Dependencies.UI.composeMaterial3)
-    implementation(Dependencies.UI.composeMaterial)
-    implementation(Dependencies.UI.composeTooling)
-    implementation(Dependencies.UI.poolingContainer)
-
-    implementation(Dependencies.Accompanist.insets)
+//    implementation(project(":common:provider"))
+//    implementation(project(":common:theme"))
+//    implementation(project(":extensions"))
+//    implementation(project(":features:recipes"))
+//
+//    implementation(Dependencies.Navigation.navigation)
+//    implementation("androidx.core:core-ktx:+")
+//    ksp(Dependencies.Navigation.destinationKsp)
+//    implementation(Dependencies.Navigation.destinationAnimation)
+//    implementation(Dependencies.Navigation.destinationCore)
+//
+//    implementation(Dependencies.UI.composeUi)
+//    implementation(Dependencies.UI.composeMaterial3)
+//    implementation(Dependencies.UI.composeMaterial)
+//    implementation(Dependencies.UI.composeTooling)
+//    implementation(Dependencies.UI.poolingContainer)
+//
+//    implementation(Dependencies.Accompanist.insets)
 }

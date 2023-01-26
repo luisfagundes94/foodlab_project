@@ -32,7 +32,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = "1.4.0-alpha02"
     }
 }
 
@@ -42,11 +42,12 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":framework"))
 
-    implementation(Dependencies.UI.composeUi)
-    implementation(Dependencies.UI.composeMaterial3)
-    implementation(Dependencies.UI.composeRuntime)
-    implementation(Dependencies.UI.composeTooling)
-    implementation(Dependencies.UI.poolingContainer)
-    implementation(Dependencies.UI.lottieCompose)
+    // Compose
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.tooling)
+    //implementation(Dependencies.UI.poolingContainer)
+    //implementation(Dependencies.UI.lottieCompose)
     implementation("androidx.core:core:1.9.0")
+    implementation("androidx.core:core-ktx:+")
 }

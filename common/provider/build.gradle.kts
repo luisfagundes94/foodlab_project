@@ -38,15 +38,16 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.Navigation.navigation)
-    implementation(Dependencies.Navigation.destinationCore)
-    implementation(Dependencies.Navigation.destinationAnimation)
-    ksp(Dependencies.Navigation.destinationKsp)
-
-    implementation(Dependencies.UI.composeUi)
-    implementation(Dependencies.UI.composeMaterial3)
-
-    implementation(Dependencies.DI.hiltAndroid)
-    kapt(Dependencies.DI.hiltAndroidCompiler)
-    implementation(Dependencies.DI.hiltNavigationCompose)
+//    implementation(Dependencies.Navigation.navigation)
+//    implementation(Dependencies.Navigation.destinationCore)
+//    implementation(Dependencies.Navigation.destinationAnimation)
+//    implementation("androidx.core:core-ktx:+")
+//    ksp(Dependencies.Navigation.destinationKsp)
+//
+//    implementation(Dependencies.UI.composeUi)
+//    implementation(Dependencies.UI.composeMaterial3)
+//
+//    implementation(Dependencies.DI.hiltAndroid)
+//    kapt(Dependencies.DI.hiltAndroidCompiler)
+//    implementation(Dependencies.DI.hiltNavigationCompose)
 }

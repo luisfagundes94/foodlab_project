@@ -46,23 +46,24 @@ android {
 
 dependencies {
 
-    // Libraries
-    implementation(project(":common:theme"))
-    implementation(project(":extensions"))
-    implementation(project(":domain"))
-    implementation(project(":framework"))
-
-    // Core
-    implementation(Dependencies.Core.composeActivity)
-
-    // UI
-    implementation(Dependencies.UI.splashScreen)
-    implementation(Dependencies.UI.composeMaterial3)
-    implementation(Dependencies.UI.composeUi)
-
-    // DI
-    implementation(Dependencies.DI.hiltAndroid)
-    kapt(Dependencies.DI.hiltAndroidCompiler)
-    implementation(Dependencies.DI.hiltNavigationCompose)
-    implementation("androidx.core:core-ktx:1.9.0")
+//    // Libraries
+//    implementation(project(":common:theme"))
+//    implementation(project(":extensions"))
+//    implementation(project(":domain"))
+//    implementation(project(":framework"))
+//
+//    // Core
+//    implementation(Dependencies.Core.composeActivity)
+//
+//    // UI
+//    implementation(Dependencies.UI.splashScreen)
+//    implementation(Dependencies.UI.composeMaterial3)
+//    implementation(Dependencies.UI.composeUi)
+//
+//    // DI
+//    implementation(Dependencies.DI.hiltAndroid)
+//    implementation("androidx.core:core-ktx:+")
+//    kapt(Dependencies.DI.hiltAndroidCompiler)
+//    implementation(Dependencies.DI.hiltNavigationCompose)
+//    implementation("androidx.core:core-ktx:1.9.0")
 }

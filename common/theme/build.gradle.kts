@@ -45,8 +45,9 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.UI.splashScreen)
-    implementation(Dependencies.UI.composeUi)
-    implementation(Dependencies.UI.composeMaterial3)
-    implementation(Dependencies.UI.material)
+//    implementation(Dependencies.UI.splashScreen)
+//    implementation(Dependencies.UI.composeUi)
+//    implementation(Dependencies.UI.composeMaterial3)
+//    implementation(Dependencies.UI.material)
+//    implementation("androidx.core:core-ktx:+")
 }

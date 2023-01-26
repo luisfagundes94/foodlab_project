@@ -68,27 +68,28 @@ dependencies {
     implementation(project(":common:component"))
     implementation(project(":common:testing"))
 
-    implementation(Dependencies.UI.composeUi)
-    implementation(Dependencies.UI.composeMaterial3)
-    implementation(Dependencies.UI.composeMaterial)
-    implementation(Dependencies.UI.composeTooling)
-    implementation(Dependencies.UI.poolingContainer)
-    implementation(Dependencies.UI.materialIconCore)
-    implementation(Dependencies.UI.materialIconExtended)
-    implementation(Dependencies.UI.composePaging)
-    implementation(Dependencies.UI.coil)
-
-    implementation(Dependencies.Accompanist.swipeToRefresh)
-
-    implementation(Dependencies.Lifecycle.lifecycleRunTimeCompose)
-
-    implementation(Dependencies.DI.hiltAndroid)
-    implementation(Dependencies.DI.hiltNavigationCompose)
-    testImplementation(project(mapOf("path" to ":domain")))
-    kapt(Dependencies.DI.hiltAndroidCompiler)
-
-    implementation(Dependencies.Navigation.navigation)
-    implementation(Dependencies.Navigation.destinationCore)
-    ksp(Dependencies.Navigation.destinationKsp)
-    implementation(Dependencies.Navigation.destinationAnimation)
+//    implementation(Dependencies.UI.composeUi)
+//    implementation(Dependencies.UI.composeMaterial3)
+//    implementation(Dependencies.UI.composeMaterial)
+//    implementation(Dependencies.UI.composeTooling)
+//    implementation(Dependencies.UI.poolingContainer)
+//    implementation(Dependencies.UI.materialIconCore)
+//    implementation(Dependencies.UI.materialIconExtended)
+//    implementation(Dependencies.UI.composePaging)
+//    implementation(Dependencies.UI.coil)
+//
+//    implementation(Dependencies.Accompanist.swipeToRefresh)
+//
+//    implementation(Dependencies.Lifecycle.lifecycleRunTimeCompose)
+//
+//    implementation(Dependencies.DI.hiltAndroid)
+//    implementation(Dependencies.DI.hiltNavigationCompose)
+//    implementation("androidx.core:core-ktx:+")
+//    testImplementation(project(mapOf("path" to ":domain")))
+//    kapt(Dependencies.DI.hiltAndroidCompiler)
+//
+//    implementation(Dependencies.Navigation.navigation)
+//    implementation(Dependencies.Navigation.destinationCore)
+//    ksp(Dependencies.Navigation.destinationKsp)
+//    implementation(Dependencies.Navigation.destinationAnimation)
 }

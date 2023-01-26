@@ -47,22 +47,23 @@ android {
 
 dependencies {
 
-    implementation(project(":domain"))
-    implementation(project(":extensions"))
-    implementation(project(":common:testing"))
-
-    implementation(Dependencies.DI.hiltAndroid)
-    kapt(Dependencies.DI.hiltAndroidCompiler)
-
-    implementation(Dependencies.Storage.dataStore)
-    implementation(Dependencies.Storage.dataStorePref)
-
-    implementation(Dependencies.Network.retrofit)
-    implementation(Dependencies.Network.retrofitGson)
-    implementation(Dependencies.Network.okHttp3)
-    implementation(Dependencies.Network.loggingInterceptor)
-
-    implementation(Dependencies.UI.composePaging)
+//    implementation(project(":domain"))
+//    implementation(project(":extensions"))
+//    implementation(project(":common:testing"))
+//
+//    implementation(Dependencies.DI.hiltAndroid)
+//    implementation("androidx.core:core-ktx:+")
+//    kapt(Dependencies.DI.hiltAndroidCompiler)
+//
+//    implementation(Dependencies.Storage.dataStore)
+//    implementation(Dependencies.Storage.dataStorePref)
+//
+//    implementation(Dependencies.Network.retrofit)
+//    implementation(Dependencies.Network.retrofitGson)
+//    implementation(Dependencies.Network.okHttp3)
+//    implementation(Dependencies.Network.loggingInterceptor)
+//
+//    implementation(Dependencies.UI.composePaging)
 }
 
 fun getApiKey() = apiKeyProperties["API_KEY"]

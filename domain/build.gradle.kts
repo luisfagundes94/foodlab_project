@@ -39,14 +39,15 @@ android {
 }
 
 dependencies {
-    implementation(project(":framework"))
-    implementation(project(":common:testing"))
-
-    implementation(Dependencies.DI.hiltAndroid)
-    kapt(Dependencies.DI.hiltAndroidCompiler)
-
-    implementation(Dependencies.Storage.dataStore)
-    implementation(Dependencies.Storage.dataStorePref)
-
-    implementation(Dependencies.UI.composePaging)
+//    implementation(project(":framework"))
+//    implementation(project(":common:testing"))
+//
+//    implementation(Dependencies.DI.hiltAndroid)
+//    implementation("androidx.core:core-ktx:+")
+//    kapt(Dependencies.DI.hiltAndroidCompiler)
+//
+//    implementation(Dependencies.Storage.dataStore)
+//    implementation(Dependencies.Storage.dataStorePref)
+//
+//    implementation(Dependencies.UI.composePaging)
 }

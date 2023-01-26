@@ -1,21 +1,24 @@
 plugins {
-    id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("com.google.devtools.ksp")
-    id("dagger.hilt.android.plugin")
+}
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
-@Suppress("UnstableApiUsage")
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
     defaultConfig {
         applicationId = "com.luisfagundes.foodlab"
-        minSdk = 21
+        minSdk = libs.versions.target.sdk.version.get().toInt()
         targetSdk = 33
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -35,7 +38,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         compose = true
@@ -73,21 +76,35 @@ dependencies {
     implementation(project(":common:theme"))
     implementation(project(":common:provider"))
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.compose.ui:ui:${Versions.compose}")
-    implementation("androidx.compose.material3:material3:1.1.0-alpha03")
-    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.composeTooling}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-    implementation(Dependencies.UI.composeUi)
+    // Core
+    implementation(libs.androidx.core.ktx)
 
-    implementation(Dependencies.DI.hiltAndroid)
-    kapt(Dependencies.DI.hiltAndroidCompiler)
-    implementation(Dependencies.DI.hiltNavigationCompose)
+    // Compose
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation(Dependencies.Navigation.navigation)
-    ksp(Dependencies.Navigation.destinationKsp)
-    implementation(Dependencies.Navigation.destinationAnimation)
-    implementation(Dependencies.Navigation.destinationCore)
+    // Lifecycle
+    implementation(libs.lifecycle.runtime.ktx)
 
-    implementation(Dependencies.Accompanist.systemUiController)
+    // Dependency Injection
+    implementation(libs.hilt.library)
+    implementation(libs.hilt.compose)
+    implementation("androidx.core:core-ktx:+")
+    kapt(libs.hilt.compiler)
+
+    // Navigation
+    implementation(libs.navigation.compose)
+    ksp(libs.destination.ksp)
+    implementation(libs.destination.animation)
+    implementation(libs.destination.core)
+
+    // Accompanist (Compose Useful Libraries)
+    implementation(libs.accompanist.systemuicontroller)
+}
+repositories {
+    google()
+    mavenCentral()
 }

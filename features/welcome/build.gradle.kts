@@ -42,28 +42,29 @@ android {
 }
 
 dependencies {
-    implementation(project(":common:theme"))
-    implementation(project(":extensions"))
-    implementation(project(":framework"))
-    implementation(project(":domain"))
-
-    implementation(Dependencies.DI.hiltAndroid)
-    kapt(Dependencies.DI.hiltAndroidCompiler)
-    implementation(Dependencies.DI.hiltNavigationCompose)
-
-    implementation(Dependencies.Navigation.navigation)
-    implementation(Dependencies.Navigation.destinationCore)
-    //ksp(Dependencies.Navigation.DestinationKsp)
-    implementation(Dependencies.Navigation.destinationAnimation)
-
-    implementation(Dependencies.Core.composeActivity)
-
-    implementation(Dependencies.Accompanist.pager)
-    implementation(Dependencies.Accompanist.indicators)
-    implementation(Dependencies.Accompanist.systemUiController)
-
-    implementation(Dependencies.UI.composeMaterial3)
-    implementation(Dependencies.UI.composeUi)
-    implementation(Dependencies.UI.composeTooling)
-    implementation(Dependencies.UI.poolingContainer)
+//    implementation(project(":common:theme"))
+//    implementation(project(":extensions"))
+//    implementation(project(":framework"))
+//    implementation(project(":domain"))
+//
+//    implementation(Dependencies.DI.hiltAndroid)
+//    implementation("androidx.core:core-ktx:+")
+//    kapt(Dependencies.DI.hiltAndroidCompiler)
+//    implementation(Dependencies.DI.hiltNavigationCompose)
+//
+//    implementation(Dependencies.Navigation.navigation)
+//    implementation(Dependencies.Navigation.destinationCore)
+//    //ksp(Dependencies.Navigation.DestinationKsp)
+//    implementation(Dependencies.Navigation.destinationAnimation)
+//
+//    implementation(Dependencies.Core.composeActivity)
+//
+//    implementation(Dependencies.Accompanist.pager)
+//    implementation(Dependencies.Accompanist.indicators)
+//    implementation(Dependencies.Accompanist.systemUiController)
+//
+//    implementation(Dependencies.UI.composeMaterial3)
+//    implementation(Dependencies.UI.composeUi)
+//    implementation(Dependencies.UI.composeTooling)
+//    implementation(Dependencies.UI.poolingContainer)
 }
