@@ -109,7 +109,7 @@ accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-
 accompanist-insetsui = { module = "com.google.accompanist:accompanist-insets-ui", version.ref = "accompanist" }
 
 detekt_formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
-espresso_core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso.core" }
+espresso_core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso_core" }
 
 coil-coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
