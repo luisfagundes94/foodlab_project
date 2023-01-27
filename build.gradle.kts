@@ -38,6 +38,12 @@ subprojects {
 
 subprojects {
 
+    tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+        rejectVersionIf {
+            isNonStable(candidate.version)
+        }
+    }
+
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
             // Treat all Kotlin warnings as errors
@@ -76,10 +82,12 @@ subprojects {
     }
 
     plugins.withId(rootProject.libs.plugins.hilt.get().pluginId) {
-        extensions.getByType<dagger.hilt.android.plugin.HiltExtension>().enableAggregatingTask = true
+        extensions.getByType<dagger.hilt.android.plugin.HiltExtension>().enableAggregatingTask =
+            true
     }
     plugins.withId(rootProject.libs.plugins.kotlin.kapt.get().pluginId) {
-        extensions.getByType<org.jetbrains.kotlin.gradle.plugin.KaptExtension>().correctErrorTypes = true
+        extensions.getByType<org.jetbrains.kotlin.gradle.plugin.KaptExtension>().correctErrorTypes =
+            true
     }
     plugins.withType<com.android.build.gradle.BasePlugin>().configureEach {
         extensions.configure<com.android.build.gradle.BaseExtension> {
@@ -94,4 +102,18 @@ subprojects {
             }
         }
     }
+}
+
+fun isNonStable(version: String): Boolean {
+    val stableKeyword = listOf(
+        "RELEASE",
+        "FINAL",
+        "GA"
+    ).any {
+        version.uppercase(java.util.Locale.getDefault())
+            .contains(it)
+    }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(version)
+    return isStable.not()
 }
