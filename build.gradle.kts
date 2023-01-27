@@ -38,12 +38,6 @@ subprojects {
 
 subprojects {
 
-    tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
-        rejectVersionIf {
-            isNonStable(candidate.version)
-        }
-    }
-
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
             // Treat all Kotlin warnings as errors
@@ -104,16 +98,34 @@ subprojects {
     }
 }
 
-fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf(
-        "RELEASE",
-        "FINAL",
-        "GA"
-    ).any {
-        version.uppercase(java.util.Locale.getDefault())
-            .contains(it)
+versionCatalogUpdate {
+    keep {
+        sortByKey.set(false)
+        // keep versions without any library or plugin reference
+        keepUnusedVersions.set(true)
+        // keep all libraries that aren't used in the project
+        keepUnusedLibraries.set(true)
+        // keep all plugins that aren't used in the project
+        keepUnusedPlugins.set(true)
     }
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-    val isStable = stableKeyword || regex.matches(version)
-    return isStable.not()
+}
+
+tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates") {
+    resolutionStrategy {
+        componentSelection {
+            all {
+                val rejected = listOf("alpha", "beta", "rc", "cr", "m", "preview")
+                    .map { qualifier -> Regex("(?i).*[.-]$qualifier[.\\d-]*") }
+                    .any { it.matches(candidate.version) }
+                if (rejected) {
+                    reject("Release candidate")
+                }
+            }
+        }
+    }
+    // optional parameters
+    checkForGradleUpdate = true
+    outputFormatter = "json"
+    outputDir = "build/dependencyUpdates"
+    reportfileName = "report"
 }
