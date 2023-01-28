@@ -24,7 +24,8 @@ object RecipeFactory {
         dairyFree = false,
         veryPopular = false,
         veryHealthy = false,
-        sustainable = true
+        sustainable = true,
+        instructions = emptyList()
     )
 
     private const val RANDOM_NUMBER = 1

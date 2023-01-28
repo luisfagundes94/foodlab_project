@@ -22,4 +22,5 @@ data class RecipeResponse(
     val veryHealthy: Boolean? = null,
     val veryPopular: Boolean? = null,
     val sustainable: Boolean? = null,
+    val analyzedInstructions: List<InstructionResponse>
 )

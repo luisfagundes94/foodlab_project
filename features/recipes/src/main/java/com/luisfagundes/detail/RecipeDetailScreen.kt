@@ -78,6 +78,7 @@ private fun RecipeInformation(
             RecipeIngredients(ingredients)
         }
         Title(text = stringResource(R.string.steps))
+        RecipeSteps(steps = recipe.instructions.first().steps)
     }
 }
 

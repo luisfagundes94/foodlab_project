@@ -22,4 +22,5 @@ data class Recipe(
     val veryHealthy: Boolean?,
     val veryPopular: Boolean?,
     val sustainable: Boolean?,
+    val instructions: List<Instruction>
 )
