@@ -9,6 +9,7 @@ import androidx.core.text.HtmlCompat
 fun HtmlText(text: String) {
     AndroidView(factory = { context ->
         TextView(context).apply {
+            textSize = 16f
             setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY))
         }
     })

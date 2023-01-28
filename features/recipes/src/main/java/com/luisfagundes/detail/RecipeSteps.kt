@@ -42,7 +42,6 @@ private fun Step(step: Step) {
         )
         Text(
             text = step.step,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(start = MaterialTheme.spacing.small)
         )
     }
