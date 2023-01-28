@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.luisfagundes.provider.NavigationProvider
 import com.luisfagundes.recipes.RecipesScreen
+import com.luisfagundes.search.SearchScreen
 import com.ramcosta.composedestinations.annotation.Destination
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,6 +41,7 @@ fun HomeScreen(
                     navigator = navigator,
                     modifier = modifier
                 )
+                BottomBarHomeItem.SEARCH -> SearchScreen()
                 else -> {}
             }
         }

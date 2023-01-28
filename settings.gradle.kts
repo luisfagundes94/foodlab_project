@@ -33,3 +33,4 @@ include(
     ":common:testing"
 )
 
+include(":features:search")

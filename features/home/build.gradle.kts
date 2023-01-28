@@ -55,6 +55,7 @@ dependencies {
     implementation(projects.common.provider)
     implementation(projects.common.theme)
     implementation(projects.features.recipes)
+    implementation(projects.features.search)
 
     // Navigation
     implementation(libs.navigation.compose)
