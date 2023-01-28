@@ -1,14 +1,18 @@
 package com.luisfagundes.detail
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Color
 import com.luisfagundes.domain.models.Step
 import com.luisfagundes.theme.spacing
 
@@ -21,27 +25,32 @@ fun RecipeSteps(steps: List<Step>) {
 
 @Composable
 private fun Step(step: Step) {
+    var isStepDone by remember { mutableStateOf(false) }
+
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(bottom = MaterialTheme.spacing.small)
+        modifier = Modifier
+            .padding(bottom = MaterialTheme.spacing.small)
+            .clickable { isStepDone = !isStepDone }
     ) {
         val backgroundNumberColor = MaterialTheme.colorScheme.surfaceVariant
         val backgroundNumberRadius = MaterialTheme.spacing.extraLarge.value
 
         Text(
-            text = step.number.toString(),
+            text = if (isStepDone) "✓" else step.number.toString(),
             modifier = Modifier
                 .padding(MaterialTheme.spacing.verySmall)
                 .drawBehind {
                     drawCircle(
-                        color = backgroundNumberColor,
+                        color = if (isStepDone) Color.Gray else backgroundNumberColor,
                         radius = backgroundNumberRadius
                     )
                 }
         )
         Text(
             text = step.step,
+            color = if (isStepDone) Color.Gray else Color.Unspecified,
             modifier = Modifier.padding(start = MaterialTheme.spacing.small)
         )
     }

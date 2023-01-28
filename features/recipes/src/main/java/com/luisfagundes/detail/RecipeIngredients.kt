@@ -32,7 +32,6 @@ private fun Ingredient(ingredient: Ingredient) {
             checked = isChecked.value,
             onCheckedChange = { isChecked.value = it }
         )
-        Spacer(modifier = Modifier.padding(horizontal = MaterialTheme.spacing.extraSmall))
         Text(text = ingredient.originalMeasure)
     }
 }
