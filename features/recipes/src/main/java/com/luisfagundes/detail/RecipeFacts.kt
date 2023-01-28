@@ -9,14 +9,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.luisfagundes.domain.models.Recipe
 import com.luisfagundes.recipes.R
 import com.luisfagundes.theme.spacing
-import kotlin.math.roundToInt
 
 @Composable
-fun NutritionFacts(recipe: Recipe) {
+fun RecipeFacts(recipe: Recipe) {
     Column {
         Divider(
             modifier = Modifier.padding(vertical = MaterialTheme.spacing.small),
@@ -27,13 +25,18 @@ fun NutritionFacts(recipe: Recipe) {
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
         ) {
-            val fat = recipe.nutrition.caloricBreakDown.percentFat.roundToInt()
-            val protein = recipe.nutrition.caloricBreakDown.percentProtein.roundToInt()
-            val carbs = recipe.nutrition.caloricBreakDown.percentCarbs.roundToInt()
-
-            NutritionFactItem(stringResource(R.string.fat), "$fat")
-            NutritionFactItem(stringResource(R.string.protein), "$protein")
-            NutritionFactItem(stringResource(R.string.carbs), "$carbs")
+            RecipeFactItem(
+                name = stringResource(R.string.servings),
+                amount = "${recipe.servings}"
+            )
+            RecipeFactItem(
+                name = stringResource(R.string.readyInMinutes),
+                amount = "${recipe.readyInMinutes}"
+            )
+            RecipeFactItem(
+                name = stringResource(R.string.aggregateLikes),
+                amount = "${recipe.aggregateLikes}"
+            )
         }
         Divider(
             modifier = Modifier.padding(vertical = MaterialTheme.spacing.small),
@@ -43,27 +46,18 @@ fun NutritionFacts(recipe: Recipe) {
 }
 
 @Composable
-private fun NutritionFactItem(
+private fun RecipeFactItem(
     name: String,
     amount: String
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = amount,
-                style = MaterialTheme.typography.displaySmall,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = "%",
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
-            )
-        }
+        Text(
+            text = amount,
+            style = MaterialTheme.typography.displaySmall,
+            fontWeight = FontWeight.Bold
+        )
         Text(
             text = name
         )

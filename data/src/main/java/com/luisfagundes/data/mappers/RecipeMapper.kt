@@ -1,12 +1,9 @@
 package com.luisfagundes.data.mappers
 
 import com.luisfagundes.data.mappers.IngredientMapper.mapToDomain
-import com.luisfagundes.data.mappers.NutritionMapper.mapToDomain
 import com.luisfagundes.domain.models.Recipe
 import com.luisfagundes.extensions.empty
 import com.luisfagundes.data.responses.RecipeResponse
-import com.luisfagundes.domain.models.CaloricBreakDown
-import com.luisfagundes.domain.models.Nutrition
 
 object RecipeMapper {
     fun RecipeResponse.toDomainModel() =
@@ -31,13 +28,6 @@ object RecipeMapper {
             glutenFree = this.glutenFree,
             veryHealthy = this.veryHealthy,
             veryPopular = this.veryPopular,
-            sustainable = this.sustainable,
-            nutrition = this.nutrition?.mapToDomain() ?: Nutrition(
-                emptyList(), CaloricBreakDown(
-                    0f,
-                    0f,
-                    0f
-                )
-            )
+            sustainable = this.sustainable
         )
 }

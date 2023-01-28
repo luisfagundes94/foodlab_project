@@ -69,7 +69,7 @@ private fun RecipeInformation(
         VerticalDivider(MaterialTheme.spacing.verySmall)
         Title(text = recipe.title)
         RecipeTags(recipe)
-        NutritionFacts(recipe = recipe)
+        RecipeFacts(recipe = recipe)
         Title(text = stringResource(id = R.string.about))
         HtmlText(text = recipe.summary)
         VerticalDivider(MaterialTheme.spacing.verySmall)

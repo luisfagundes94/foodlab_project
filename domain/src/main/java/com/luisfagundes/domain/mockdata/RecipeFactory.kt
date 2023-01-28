@@ -1,7 +1,5 @@
 package com.luisfagundes.domain.mockdata
 
-import com.luisfagundes.domain.models.CaloricBreakDown
-import com.luisfagundes.domain.models.Nutrition
 import com.luisfagundes.domain.models.Recipe
 
 object RecipeFactory {
@@ -26,14 +24,7 @@ object RecipeFactory {
         dairyFree = false,
         veryPopular = false,
         veryHealthy = false,
-        sustainable = true,
-        nutrition = Nutrition(
-            emptyList(), CaloricBreakDown(
-                1f,
-                1f,
-                1f
-            )
-        )
+        sustainable = true
     )
 
     private const val RANDOM_NUMBER = 1
