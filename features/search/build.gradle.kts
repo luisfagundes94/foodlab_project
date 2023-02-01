@@ -51,6 +51,7 @@ dependencies {
     implementation(projects.common.theme)
     implementation(projects.framework)
     implementation(projects.domain)
+    implementation(projects.common.component)
 
     // Paging
     implementation(libs.androidx.paging.compose)
@@ -62,6 +63,9 @@ dependencies {
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.material3)
+
+    // Lifecycle
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     // Dependency Injection
     implementation(libs.hilt.library)

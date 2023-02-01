@@ -55,6 +55,7 @@ destination = "1.7.27-beta"
 version_catalog = "0.7.0"
 core_ktx = "1.9.0"
 androidx-hilt = "1.0.0"
+byte-buddy = "1.12.18"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }

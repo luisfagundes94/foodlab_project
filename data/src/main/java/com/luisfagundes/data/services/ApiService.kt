@@ -1,6 +1,7 @@
 package com.luisfagundes.data.services
 
 import com.luisfagundes.data.responses.DataContainerResponse
+import com.luisfagundes.data.responses.RecipeAutoCompleteResponse
 import com.luisfagundes.data.responses.RecipeResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,4 +20,10 @@ interface ApiService {
     suspend fun fetchRecipeDetails(
         @Path("id") id: Int
     ): RecipeResponse
+
+    @GET("recipes/autocomplete")
+    suspend fun fetchRecipesAutoComplete(
+        @Query("number") number: Int = 5,
+        @Query("query") query: String
+    ): List<RecipeAutoCompleteResponse>
 }

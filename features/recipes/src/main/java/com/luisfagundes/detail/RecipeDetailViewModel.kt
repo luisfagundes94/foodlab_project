@@ -11,16 +11,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
-const val RECIPE_ID = "recipeId"
-private const val DEFAULT_RECIPE_ID = -1
-
 @HiltViewModel
 class RecipeDetailViewModel @Inject constructor(
     private val getRecipeDetail: GetRecipeDetail,
     savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
-
-    private val recipeId: Int = savedStateHandle[RECIPE_ID] ?: DEFAULT_RECIPE_ID
 
     private val _uiState = MutableStateFlow(RecipeDetailUiState(isLoading = true))
     val uiState = _uiState.asStateFlow()
@@ -40,5 +35,4 @@ class RecipeDetailViewModel @Inject constructor(
             }
         }
     }
-
 }
