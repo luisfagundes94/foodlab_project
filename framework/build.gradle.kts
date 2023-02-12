@@ -54,6 +54,8 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")
 
+    implementation("com.google.accompanist:accompanist-insets:0.28.0")
+
     implementation("androidx.compose.ui:ui:1.3.3")
     implementation("androidx.compose.material3:material3:1.0.1")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")

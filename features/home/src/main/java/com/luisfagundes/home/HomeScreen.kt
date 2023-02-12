@@ -1,8 +1,7 @@
 package com.luisfagundes.home
 
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -59,6 +58,7 @@ private fun HomeBottomNavigation(
         containerColor = MaterialTheme.colorScheme.surface,
         modifier = Modifier
             .fillMaxWidth()
+            .navigationBarsPadding()
     ) {
         pages.forEach { page ->
             val selected = page == bottomTab

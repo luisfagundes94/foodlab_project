@@ -9,6 +9,9 @@ import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,9 +30,6 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.luisfagundes.component.errorView
 import com.luisfagundes.component.loadingView
 import com.luisfagundes.domain.mockdata.RecipeFactory
@@ -60,39 +60,35 @@ fun Recipes(
     onRecipeClick: (Int) -> Unit = {}
 ) {
     val pagingItems = rememberFlowWithLifecycle(recipePagingData).collectAsLazyPagingItems()
+    val isRefreshing = pagingItems.loadState.refresh == LoadState.Loading
+    val pullRefreshState = rememberPullRefreshState(isRefreshing, { pagingItems.refresh() })
 
-    SwipeRefresh(
-        state = rememberSwipeRefreshState(
-            isRefreshing = pagingItems.loadState.refresh == LoadState.Loading
-        ),
-        onRefresh = { pagingItems.refresh() },
-        indicator = { state, trigger ->
-            SwipeRefreshIndicator(
-                state = state,
-                refreshTriggerDistance = trigger,
-                scale = true
-            )
-        },
-        content = {
-            LazyColumn(
-                modifier = modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                checkRefreshLoadState(pagingItems)
+    Box(
+        modifier = Modifier.pullRefresh(pullRefreshState)
+    ) {
+        PullRefreshIndicator(
+            refreshing = isRefreshing,
+            state = pullRefreshState,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            checkRefreshLoadState(pagingItems)
 
-                items(pagingItems.itemCount) { index ->
-                    pagingItems[index]?.let { recipe ->
-                        RecipeItem(
-                            recipe = recipe,
-                            onDetailClick = { onRecipeClick.invoke(recipe.id) }
-                        )
-                    }
+            items(pagingItems.itemCount) { index ->
+                pagingItems[index]?.let { recipe ->
+                    RecipeItem(
+                        recipe = recipe,
+                        onDetailClick = { onRecipeClick.invoke(recipe.id) }
+                    )
                 }
-                checkAppendLoadState(pagingItems)
             }
+            checkAppendLoadState(pagingItems)
         }
-    )
+    }
 }
 
 private fun LazyListScope.checkAppendLoadState(

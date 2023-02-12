@@ -47,6 +47,11 @@ dependencies {
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.material3)
     implementation(libs.compose.ui.tooling)
+
+    // Image Loading
+    implementation(libs.coil.compose)
+
+    // Animation
     implementation(libs.lottie)
 
     // Core

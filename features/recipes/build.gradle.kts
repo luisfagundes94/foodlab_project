@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.material3)
+    implementation(libs.compose.material.material)
     implementation(libs.compose.material.iconsext)
     implementation(libs.accompanist.swipetorefresh)
 

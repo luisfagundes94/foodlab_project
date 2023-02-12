@@ -29,6 +29,10 @@ class RecipesViewModel @Inject constructor(
         return getRecipes(params).cachedIn(scope = viewModelScope)
     }
 
+    fun refresh() = safeLaunch {
+
+    }
+
     private companion object {
         const val PAGE_SIZE = 15
         const val SORT = "sort"

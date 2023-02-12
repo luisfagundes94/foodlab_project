@@ -77,4 +77,7 @@ dependencies {
     ksp(libs.destination.ksp)
     implementation(libs.destination.animation)
     implementation(libs.destination.core)
+
+    // Acompanist
+    implementation(libs.accompanist.insets)
 }
